@@ -9,6 +9,9 @@ class _PasscodeManager:
         try:
             with open("passcode.beacon", mode="rb") as fp:
                 self.value = fp.read()
+
+            if len(self.value) == 0:
+                self.value = None
         except FileNotFoundError:
             print("warning! `passcode.beacon` not found")
 

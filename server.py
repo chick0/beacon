@@ -73,7 +73,7 @@ class BeaconServerProtocol(WebSocketServerProtocol):
         if len(data) < 10:
             self.sendMessage(b"invalid_passcode")
         elif PasscodeManager.value is None:
-            PasscodeManager.value = data
+            PasscodeManager.value = sha512(data.encode("utf-8")).digest()
             PasscodeManager.export()
 
             self.sendMessage(b"passcode_update")
