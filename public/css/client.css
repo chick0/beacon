@@ -5,6 +5,7 @@ html {
 .bg-area {
     width: 100vw;
     height: 100vh;
+    background-color: black;
 }
 
 .text-area {
@@ -12,10 +13,12 @@ html {
     font-size: 200px;
     word-break: keep-all;
     white-space: pre-wrap;
+
+    color: #fff;
 }
 
 .STOP {
-    background-color: hsl(348, 95%, 37%);
+    background-color: hsl(348, 97%, 23%);
     color: #fff;
 }
 
