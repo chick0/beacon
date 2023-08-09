@@ -12,3 +12,19 @@ function wsDataHandler(data) {
         textArea.innerText = data.slice(5)
     }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.addEventListener("click", () => {
+        const element = document.documentElement
+
+        if (element.requestFullscreen) {
+            element.requestFullscreen()
+        } else if (element.webkitRequestFullscreen) {
+            element.webkitRequestFullscreen()
+        } else if (element.mozRequestFullScreen) {
+            element.mozRequestFullScreen()
+        } else if (element.msRequestFullscreen) {
+            element.msRequestFullscreen()
+        }
+    })
+})
