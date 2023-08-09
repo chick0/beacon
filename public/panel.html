@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+        <title>신호기 - 조작부</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    </head>
+    <body>
+        <div class="container my-5 py-5">
+            <div class="box">
+                <h3 class="title is-3">배경 색상 (상태 설정)</h3>
+
+                <div class="tags has-addons">
+                    <span class="tag is-dark">현재 상태</span>
+                    <span class="tag is-info" id="status"></span>
+                </div>
+
+                <div class="buttons mt-3">
+                    <button class="button is-secondary for-status" data-status="">기본</button>
+                    <button class="button is-danger for-status" data-status="STOP">문제발생</button>
+                    <button class="button is-warning for-status" data-status="PREPARE">준비중</button>
+                    <button class="button is-success for-status" data-status="READY">준비 완료</button>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3 class="title is-3">텍스트 설정</h3>
+                <textarea id="text" class="textarea" rows="10"></textarea>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="./js/connect.js"></script>
+        <script src="./js/panel.js"></script>
+    </body>
+</html>

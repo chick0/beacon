@@ -1,0 +1,30 @@
+html {
+    overflow: hidden;
+}
+
+.bg-area {
+    width: 100vw;
+    height: 100vh;
+}
+
+.text-area {
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-size: 200px;
+    word-break: keep-all;
+    white-space: pre-wrap;
+}
+
+.STOP {
+    background-color: hsl(348, 95%, 37%);
+    color: #fff;
+}
+
+.PREPARE {
+    background-color: hsl(48, 76%, 28%);
+    color: #fff;
+}
+
+.READY {
+    background-color: hsl(141, 70%, 23%);
+    color: #fff;
+}
