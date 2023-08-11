@@ -48,7 +48,7 @@ function wsDataHandler(data) {
             confirmButtonText: "확인",
         }).then(() => {
             localStorage.clear()
-            passwordAsk("설정")
+            passwordAsk("입력")
         })
     } else if (data == "passcode_update") {
         Toast.fire({
