@@ -29,6 +29,13 @@ class BeaconServerProtocol(WebSocketServerProtocol):
         if not isBinary:
             data: str = payload.decode("utf-8")
 
+            if self.hasUpgradeRequst:
+                self.do_upgrade_request(data)
+                return
+            elif data == "upgrade":
+                self.create_upgrade_request()
+                return
+
             if data == "ping":
                 self.sendMessage(b"pong!")
                 return
@@ -38,28 +45,25 @@ class BeaconServerProtocol(WebSocketServerProtocol):
                 self.sendMessage(f"text={RestoreManager.text}".encode("utf-8"))
                 return
 
-            if self.hasUpgradeRequst:
-                self.do_upgrade_request(data)
-                return
-
             if self.isPanel:
-                if data == "RestoreManager_export":
-                    RestoreManager.export()
-                    return
-
-                if data.startswith("status="):
-                    RestoreManager.status = data[7:]  # type: ignore
-                    RestoreManager.export()
-                elif data.startswith("text="):
-                    RestoreManager.text = data[5:]  # type: ignore
-
-                self.factory.broadcast(data, self.peer)  # type: ignore
-            elif data == "upgrade":
-                self.create_upgrade_request()
+                self.data_from_panel(data)
 
     def connectionLost(self, reason):
         WebSocketServerProtocol.connectionLost(self, reason)
         self.factory.unregister(self)  # type: ignore
+
+    def data_from_panel(self, data):
+        if data == "RestoreManager_export":
+            RestoreManager.export()
+            return
+
+        if data.startswith("status="):
+            RestoreManager.status = data[7:]  # type: ignore
+            RestoreManager.export()
+        elif data.startswith("text="):
+            RestoreManager.text = data[5:]  # type: ignore
+
+        self.factory.broadcast(data, self.peer)  # type: ignore
 
     def create_upgrade_request(self):
         if PasscodeManager.value is None:
