@@ -3,13 +3,13 @@ from hashlib import sha512
 from logging import getLogger
 
 from twisted.python import log
-from twisted.web.static import File
 from twisted.web.server import Site
 from twisted.internet import reactor
 from autobahn.twisted.resource import WebSocketResource
 from autobahn.twisted.websocket import WebSocketServerFactory
 from autobahn.twisted.websocket import WebSocketServerProtocol
 
+from public import File
 from manager import PasscodeManager
 from manager import RestoreManager
 
