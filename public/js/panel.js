@@ -32,14 +32,16 @@ function wsDataHandler(data) {
     } else if (data == "create_passcode") {
         passwordAsk("설정")
     } else if (data == "passcode_required") {
-        let passcode = localStorage.getItem("passcode")
+        let passcode = localStorage.getItem("beaconPasscode")
 
-        if (passcode == null) {
+        if (passcode == null || passcode.length == 0) {
             passwordAsk("입력")
         } else {
             window.ws.send(passcode)
         }
     } else if (data == "invalid_passcode") {
+        localStorage.clear()
+
         Swal.fire({
             icon: "error",
             text: "접속 코드가 올바르지 않습니다.",
@@ -47,7 +49,6 @@ function wsDataHandler(data) {
             timerProgressBar: true,
             confirmButtonText: "확인",
         }).then(() => {
-            localStorage.clear()
             passwordAsk("입력")
         })
     } else if (data == "passcode_update") {
@@ -87,7 +88,7 @@ function passwordAsk(keyword) {
                     passwordAsk(keyword)
                 })
             } else {
-                localStorage.setItem("passcode", result.value)
+                localStorage.setItem("beaconPasscode", result.value)
                 window.ws.send(result.value)
                 lockScreen()
             }
