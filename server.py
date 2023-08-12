@@ -29,15 +29,15 @@ class BeaconServerProtocol(WebSocketServerProtocol):
         if not isBinary:
             data: str = payload.decode("utf-8")
 
+            if data == "ping":
+                self.sendMessage(b"pong!")
+                return
+
             if self.hasUpgradeRequst:
                 self.do_upgrade_request(data)
                 return
             elif data == "upgrade":
                 self.create_upgrade_request()
-                return
-
-            if data == "ping":
-                self.sendMessage(b"pong!")
                 return
 
             if data == "restore":
